@@ -1,0 +1,11 @@
+{
+  "name": "conversor-frete",
+  "version": "1.0.0",
+  "description": "Aplicativo Streamlit para conversão de tabelas de frete",
+  "scripts": {
+    "start": "streamlit run app.py --server.port $PORT --server.enableCORS false --server.enableXsrfProtection false --server.headless true"
+  },
+  "dependencies": {
+    "streamlit": "^1.58.0"
+  }
+}
