@@ -1,12 +1,11 @@
-import subprocess
+from flask import Flask, jsonify
 
-def handler(event, context):
-    # Inicia o Streamlit como um subprocesso
-    # Certifique-se de que 'app.py' está no mesmo diretório ou no PATH
-    subprocess.Popen(["streamlit", "run", "app.py", "--server.port", "8501", "--server.enableCORS", "false", "--server.enableXsrfProtection", "false", "--server.headless", "true"])
+app = Flask(__name__)
 
-    # Retorna uma resposta HTTP simples para o Vercel
-    return {
-        'statusCode': 200,
-        'body': 'Streamlit app is starting...'
-    }
+@app.route('/')
+def home():
+    return jsonify({"message": "Hello from Flask on Vercel! This is a placeholder for your Streamlit app."})
+
+# Este é o ponto de entrada que o Vercel espera para um aplicativo Python.
+# O Streamlit não é um aplicativo WSGI/ASGI como o Flask, então ele não pode ser servido diretamente aqui.
+# Para rodar o Streamlit no Vercel, seria necessário um setup mais complexo (ex: proxy reverso).
